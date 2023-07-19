@@ -14,5 +14,16 @@
         </div>
       </div>
     </section>
+    <section class="rounded-3xl border border-gray-700 bg-gray-900 text-gray-400 shadow-2xl">
+        <div v-for="game in gamesStore.gamesList" :key="game.slug" class="text-center">
+            {{ game.name }}
+        </div>
+    </section>
   </div>
 </template>
+
+<script setup lang='ts'>
+    const gamesStore = useGamesStore()
+
+    await gamesStore.getGamesList() 
+</script>
