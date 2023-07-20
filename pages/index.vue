@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid h-screen place-items-center bg-gradient-to-tr from-green-900 via-gray-900 to-green-900"
+    class="grid h-screen place-items-center"
   >
     <section class="rounded-3xl border border-gray-700 bg-gray-900 text-gray-400 shadow-2xl">
       <div class="container mx-auto flex flex-col items-center px-12 py-24 md:flex-row">
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang='ts'>
-    const gamesStore = useGamesStore()
+  const gamesStore = useGamesStore()
 
-    await gamesStore.getGamesList() 
+  await gamesStore.getGamesList() 
 </script>
