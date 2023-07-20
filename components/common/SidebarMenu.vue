@@ -1,5 +1,5 @@
 <template>
-    <section class="pt-20">
+    <section>
         <template v-for="item in sidebarItems" :key="item.value">
             <v-list>
                 <v-list-item
