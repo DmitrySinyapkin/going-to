@@ -12,6 +12,7 @@ interface Game {
     released: string
     tba: boolean
     background_image: string
+    genres: Genre[]
     rating: number
     rating_top: number
     ratings: Ratings
@@ -52,5 +53,13 @@ interface PlatformDesc {
 interface Requirements {
     minimum: string
     recommended: string
+}
+
+interface Genre {
+    games_count: number
+    id: number
+    image_background: string
+    name: string
+    slug: string
 }
   
