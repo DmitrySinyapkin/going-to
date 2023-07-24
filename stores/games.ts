@@ -7,8 +7,8 @@ export const useGamesStore = defineStore('games', {
 
     actions: {
         async getGamesList() {
-            const { results } = await (await fetch(`https://api.rawg.io/api/games?key=${process.env.RAGW_API_KEY}`)).json()
-            this.gamesList = results
+            const resp: any = await useGamesFetch('/games')
+            this.gamesList = resp.data.value.results
         }
     }
 })
