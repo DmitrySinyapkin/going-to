@@ -1,5 +1,5 @@
 <template>
-    <v-card width="300">
+    <v-card width="300" :to="detailsUrl">
         <v-img
             :src="game.background_image"
             height="200px"
@@ -26,4 +26,6 @@
     const platforms = computed(() => {
         return game.platforms.reduce((acc, item, i, arr) => i === arr.length - 1 ? acc + item.platform.name : acc + item.platform.name + ', ', '')
     })
+
+    const detailsUrl = computed(() => `/games/${game.id}`)
 </script>
