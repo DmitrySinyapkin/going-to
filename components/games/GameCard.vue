@@ -8,24 +8,20 @@
         <v-card-title>{{ game.name }}</v-card-title>
         <v-card-subtitle>{{ genres }}</v-card-subtitle>
         <v-card-text>
-            <p class="text--primary mb-2">Платформа: {{ platforms }}</p>
-            <p class="text--primary">Дата выхода: {{ game.released }}</p>
+            <p class="text--primary mb-2"><span class="tw-font-bold">Platforms:</span> {{ platforms }}</p>
+            <p class="text--primary"><span class="tw-font-bold">Released:</span> {{ game.released }}</p>
         </v-card-text>
     </v-card>
 </template>
 
 <script setup lang="ts">
+    import { getGameGenres, getGamePlatforms } from '@/utils/gamesUtils';
+
     const { game } = defineProps<{
         game: Game
     }>()
 
-    const genres = computed(() => {
-        return game.genres.reduce((acc, item, i, arr) => i === arr.length - 1 ? acc + item.name : acc + item.name + ', ', '')
-    })
-
-    const platforms = computed(() => {
-        return game.platforms.reduce((acc, item, i, arr) => i === arr.length - 1 ? acc + item.platform.name : acc + item.platform.name + ', ', '')
-    })
-
+    const genres = computed(() => getGameGenres(game.genres))
+    const platforms = computed(() => getGamePlatforms(game.platforms))
     const detailsUrl = computed(() => `/games/${game.id}`)
 </script>

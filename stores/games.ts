@@ -28,7 +28,11 @@ export const useGamesStore = defineStore('games', {
         },
         async getGameDetails(id: string) {
             const { data } = await useGamesFetch<GameDetails>(`/games/${id}`)
-            if (data.value) this.game = data.value
-        }
+            if (data.value) {
+                this.game = data.value
+                const resp = await useGamesFetch<ScreenshotsResponse>(`/games/${id}/screenshots`)
+                this.game.screenshots = resp.data.value?.results
+            }
+        },
     }
 })

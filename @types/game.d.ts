@@ -69,6 +69,8 @@ interface GameDetails {
     name: string
     name_original: string
     description: string
+    description_raw: string
+    genres: Genre[]
     metacritic: number
     metacritic_platforms: MetacriticPlatform[]
     released: string
@@ -85,6 +87,7 @@ interface GameDetails {
     added_by_status: AddedByStatus
     playtime: number
     screenshots_count: number
+    screenshots?: Screenshot[]
     movies_count: number
     creators_count: number
     achievements_count: number
@@ -112,4 +115,20 @@ interface GameDetails {
     metascore: number
     url: string
   }
+
+  interface ScreenshotsResponse {
+    count: number
+    next: any
+    previous: any
+    results: Result[]
+  }
+  
+  interface Screenshot {
+    id: number
+    image: string
+    width: number
+    height: number
+    is_deleted: boolean
+  }
+  
   
