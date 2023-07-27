@@ -28,9 +28,21 @@ interface Game {
     platforms: Platform[]
 }
   
-interface Ratings {}
+interface Ratings {
+    id: number
+    title: string
+    count: number
+    percent: number
+}
   
-interface AddedByStatus {}
+interface AddedByStatus {
+    yet: number
+    owned: number
+    beaten: number
+    toplay: number
+    dropped: number
+    playing: number
+}
   
 interface EsrbRating {
     id: number
@@ -71,43 +83,43 @@ interface GameDetails {
     description: string
     description_raw: string
     genres: Genre[]
-    metacritic: number
-    metacritic_platforms: MetacriticPlatform[]
+    metacritic?: number
+    metacritic_platforms?: MetacriticPlatform[]
     released: string
     tba: boolean
     updated: string
     background_image: string
     background_image_additional: string
     website: string
-    rating: number
-    rating_top: number
-    ratings: Ratings
+    rating?: number
+    rating_top?: number
+    ratings?: Ratings
     reactions: Reactions
-    added: number
-    added_by_status: AddedByStatus
-    playtime: number
+    added?: number
+    added_by_status?: AddedByStatus
+    playtime?: number
     screenshots_count: number
     screenshots?: Screenshot[]
-    movies_count: number
-    creators_count: number
-    achievements_count: number
-    parent_achievements_count: string
-    reddit_url: string
-    reddit_name: string
-    reddit_description: string
-    reddit_logo: string
-    reddit_count: number
-    twitch_count: string
-    youtube_count: string
-    reviews_text_count: string
-    ratings_count: number
-    suggestions_count: number
-    alternative_names: string[]
-    metacritic_url: string
-    parents_count: number
-    additions_count: number
-    game_series_count: number
-    esrb_rating: EsrbRating
+    movies_count?: number
+    creators_count?: number
+    achievements_count?: number
+    parent_achievements_count?: string
+    reddit_url?: string
+    reddit_name?: string
+    reddit_description?: string
+    reddit_logo?: string
+    reddit_count?: number
+    twitch_count?: string
+    youtube_count?: string
+    reviews_text_count?: string
+    ratings_count?: number
+    suggestions_count?: number
+    alternative_names?: string[]
+    metacritic_url?: string
+    parents_count?: number
+    additions_count?: number
+    game_series_count?: number
+    esrb_rating?: EsrbRating
     platforms: Platform[]
   }
   
