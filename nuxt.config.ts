@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     ['@pinia/nuxt', { autoImports: ['defineStore'] }],
     '@invictus.codes/nuxt-vuetify',
+    '@nuxtjs/supabase',
   ],
   imports: {
     dirs: ['./stores']
