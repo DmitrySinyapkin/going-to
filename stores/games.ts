@@ -40,6 +40,9 @@ export const useGamesStore = defineStore('games', {
         },
         async setFavoritesList(data: string) {
             this.favoritesList = JSON.parse(data)
-        }
+        },
+        async setFinishedList(data: string) {
+            this.favoritesList = JSON.parse(data)
+        },
     }
 })
