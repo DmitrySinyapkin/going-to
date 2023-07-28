@@ -12,7 +12,10 @@
             </v-card-text>
         </v-card>
         <div class="tw-container tw-mx-auto tw-p-4">
-            <h2>{{ gamesStore.game?.name }}</h2>
+            <div class="tw-flex tw-gap-10">
+                <h2>{{ gamesStore.game?.name }}</h2>
+                <GameButtons />
+            </div>
             <p class="tw-text-gray-600">{{ genres }}</p>
             <p class="tw-pt-3"><span class="tw-font-bold">Platforms:</span> {{ platforms }}</p>
             <p class="tw-pt-3"><span class="tw-font-bold">Released:</span> {{ gamesStore.game?.released }}</p>
@@ -36,6 +39,7 @@
 
 <script setup lang="ts">
     import { getGameGenres, getGamePlatforms } from '@/utils/gamesUtils';
+    import GameButtons from '@/components/games/GameButtons.vue';
 
     const route = useRoute()
     const gamesStore = useGamesStore()

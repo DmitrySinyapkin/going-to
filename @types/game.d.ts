@@ -141,6 +141,5 @@ interface GameDetails {
     width: number
     height: number
     is_deleted: boolean
-  }
-  
+  } 
   
