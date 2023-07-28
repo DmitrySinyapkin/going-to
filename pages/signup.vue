@@ -33,19 +33,31 @@
     const email = ref<string>('')
     const password = ref<string>('')
     const supabase = useSupabaseAuthClient()
+    const user = useSupabaseUser()
+    const router = useRouter()
 
     const onSubmit = async() => {
         const { valid } = await form.value.validate()
 
         if (valid) {
-            const { error } = await supabase.auth.signUp({
+            const { data, error } = await supabase.auth.signUp({
                 email: email.value,
                 password: password.value,
                 options: {
                     emailRedirectTo: 'http://localhost:3000/login'
                 }
             })
+
+            if (error) return alert(`Sign up failed! ${error}`)
+
+            alert('Please, confirm your email!')
         }
-    } 
+    }
+
+    watchEffect(async() => {
+        if (user.value) {
+            await router.push('/')
+        }
+    })
 
 </script>

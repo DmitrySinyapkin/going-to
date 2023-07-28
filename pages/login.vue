@@ -40,15 +40,17 @@
         const { valid } = await form.value.validate()
 
         if (valid) {
-            const { error } = await supabase.auth.signInWithPassword({
+            const { data, error } = await supabase.auth.signInWithPassword({
                 email: email.value,
                 password: password.value
             })
-
+            
             if (error) alert(`Login failed! ${error}`)
+
+            router.push('/')
         }
     }
-    
+
     watchEffect(async() => {
         if (user.value) {
             await router.push('/')
