@@ -38,11 +38,11 @@ export const useGamesStore = defineStore('games', {
                 this.game.screenshots = resp.data.value?.results
             }
         },
-        async setFavoritesList(data: string) {
-            this.favoritesList = JSON.parse(data)
+        async setFavoritesList(data: any) {
+            this.favoritesList = data
         },
-        async setFinishedList(data: string) {
-            this.favoritesList = JSON.parse(data)
+        async setFinishedList(data: any) {
+            this.finishedList = data
         },
     }
 })

@@ -22,11 +22,11 @@
     const user = useSupabaseUser()
     const client = useSupabaseClient()
     const { data } = await useAsyncData('profiles', async () => {
-    const { data } = await client.from('profiles').select('gamesFinished').eq('id', user.value?.id).single()
-        return data
+        const { data } = await client.from('profiles').select('gamesFinished').eq('id', user.value?.id).single()
+            return data
     })
 
     if (data.value?.gamesFinished) {
-        gamesStore.setFavoritesList(data.value?.gamesFinished)
+        gamesStore.setFinishedList(JSON.parse(data.value?.gamesFinished))
     }
 </script>
