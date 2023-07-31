@@ -30,12 +30,18 @@ export const useGamesStore = defineStore('games', {
             this.gamesList = [...gamesList, ...results]
             this.nextPageUrl = data.value?.next
         },
-        async getGameDetails(id: string) {
+        async getGameDetails(id: string | string[]) {
             const { data } = await useGamesFetch<GameDetails>(`/games/${id}`)
             if (data.value) {
                 this.game = data.value
-                const resp = await useGamesFetch<ScreenshotsResponse>(`/games/${id}/screenshots`)
-                this.game.screenshots = resp.data.value?.results
+            }
+        },
+        async getGameScreenshots() {
+            if (this.game?.id) {
+                const { data } = await useGamesFetch<ScreenshotsResponse>(`/games/${this.game.id}/screenshots`)
+                if (data.value) {
+                    this.game = {...this.game, screenshots: data.value?.results}
+                }
             }
         },
         async setFavoritesList(data: any) {
