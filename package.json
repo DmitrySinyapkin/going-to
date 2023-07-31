@@ -25,6 +25,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "^5.0.0",
     "defu": "^6.1.2",
-    "pinia": "^2.1.4"
+    "pinia": "^2.1.4",
+    "vue3-carousel-nuxt": "^1.1.0"
   }
 }

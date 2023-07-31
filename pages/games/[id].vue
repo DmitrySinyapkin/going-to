@@ -1,5 +1,5 @@
 <template>
-    <section class="tw-p-2">
+    <section class="tw-p-2 tw-relative">
         <v-card
             width="100%"
             height="300"
@@ -23,23 +23,31 @@
         </div>
         <v-row class="tw-pt-4 tw-px-16">
             <v-col
-                v-for="screen in gamesStore.game?.screenshots"
+                v-for="(screen, i) in gamesStore.game?.screenshots"
                 :key="screen.id"
                 class="d-flex child-flex"
                 cols="4"
             >
                 <v-img
                     :src="screen.image"
+                    @click="onOpen(i)"
                     cover
                 />
             </v-col>
         </v-row>
+        <CarouselComponent
+            :isOpen="isOpen"
+            @onClose="onClose"
+            :items="gamesStore.game?.screenshots!"
+            :current="current"
+        />
     </section>
 </template>
 
 <script setup lang="ts">
     import { getGameGenres, getGamePlatforms } from '@/utils/gamesUtils';
     import GameButtons from '@/components/games/GameButtons.vue';
+    import CarouselComponent from '@/components/common/CarouselComponent.vue';
 
     const route = useRoute()
     const gamesStore = useGamesStore()
@@ -47,4 +55,16 @@
 
     const genres = computed(() => getGameGenres(gamesStore.game!.genres))
     const platforms = computed(() => getGamePlatforms(gamesStore.game!.platforms))
+
+    const isOpen = ref<boolean>(false)
+    const current = ref<number>(0)
+
+    const onOpen = (index: number) => {
+        current.value = index
+        isOpen.value = true
+    }
+
+    const onClose = () => {
+        isOpen.value = false
+    }
 </script>

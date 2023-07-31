@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     ['@pinia/nuxt', { autoImports: ['defineStore'] }],
     '@invictus.codes/nuxt-vuetify',
     '@nuxtjs/supabase',
+    'vue3-carousel-nuxt',
   ],
   imports: {
     dirs: ['./stores']
