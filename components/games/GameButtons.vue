@@ -1,29 +1,49 @@
 <template>
     <div v-if="user" class="tw-flex tw-gap-1">
-        <v-btn
-            v-if="!isFavorite && !isFinished"
-            density="compact"
-            icon="mdi-plus"
-            @click="addToFavorites"
-        />
-        <v-btn
-            v-if="!isFinished"
-            density="compact"
-            icon="mdi-check"
-            @click="addToFinished"
-        />
-        <v-btn
-            v-if="isFavorite"
-            density="compact"
-            icon="mdi-close"
-            @click="removeFromFavorites"
-        />
-        <v-btn
-            v-if="isFinished"
-            density="compact"
-            icon="mdi-close"
-            @click="removeFromFinished"
-        />
+        <v-tooltip text="Add to favorites" location="bottom">
+            <template v-slot:activator="{ props }">
+                <v-btn
+                    v-if="!isFavorite && !isFinished"
+                    v-bind="props"
+                    density="compact"
+                    icon="mdi-plus"
+                    @click="addToFavorites"
+                />
+            </template>
+        </v-tooltip>
+        <v-tooltip text="Add to finished" location="bottom">
+            <template v-slot:activator="{ props }">
+                <v-btn
+                    v-if="!isFinished"
+                    v-bind="props"
+                    density="compact"
+                    icon="mdi-check"
+                    @click="addToFinished"
+                />
+            </template>
+        </v-tooltip>
+        <v-tooltip text="Remove from favorites" location="bottom">
+            <template v-slot:activator="{ props }">
+                <v-btn
+                    v-if="isFavorite"
+                    v-bind="props"
+                    density="compact"
+                    icon="mdi-close"
+                    @click="removeFromFavorites"
+                />
+            </template>
+        </v-tooltip>
+        <v-tooltip text="Remove from finished" location="bottom">
+            <template v-slot:activator="{ props }">
+                <v-btn
+                    v-if="isFinished"
+                    v-bind="props"
+                    density="compact"
+                    icon="mdi-close"
+                    @click="removeFromFinished"
+                />
+            </template>
+        </v-tooltip>
     </div>
 </template>
 
