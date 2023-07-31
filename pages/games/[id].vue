@@ -53,6 +53,10 @@
     const gamesStore = useGamesStore()
     await gamesStore.getGameDetails(route.params.id)
 
+    if (gamesStore.game?.id) {
+        await gamesStore.getGameScreenshots()
+    }
+
     const genres = computed(() => getGameGenres(gamesStore.game!.genres))
     const platforms = computed(() => getGamePlatforms(gamesStore.game!.platforms))
 
