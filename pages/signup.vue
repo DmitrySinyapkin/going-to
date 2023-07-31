@@ -35,6 +35,7 @@
     const supabase = useSupabaseAuthClient()
     const user = useSupabaseUser()
     const router = useRouter()
+    const config = useRuntimeConfig()
 
     const onSubmit = async() => {
         const { valid } = await form.value.validate()
@@ -44,7 +45,7 @@
                 email: email.value,
                 password: password.value,
                 options: {
-                    emailRedirectTo: 'http://localhost:3000/login'
+                    emailRedirectTo: `${config.public.siteUrl}/login`
                 }
             })
 
