@@ -18,8 +18,8 @@ export const useGamesStore = defineStore('games', {
     },
 
     actions: {
-        async getGamesList() {
-            const { data } = await useGamesFetch<GamesResponse>('/games')
+        async getGamesList(options?: any) {
+            const { data } = await useGamesFetch<GamesResponse>('/games', options)
             this.gamesList = data.value?.results
             this.nextPageUrl = data.value?.next
         },
