@@ -2,7 +2,7 @@
   <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-pt-10">
     <h1 class="tw-mb-10">Welcome to GOING-TO App</h1>
     <div v-if="user" class="tw-mt-6">
-      <SidebarMenu />
+      <CommonSidebarMenu/>
     </div>
     <div v-else>
       <v-list>
@@ -22,8 +22,6 @@
 </template>
 
 <script setup lang="ts">
-  import SidebarMenu from '@/components/common/SidebarMenu.vue';
-
   definePageMeta({
     layout: 'main',
   })
