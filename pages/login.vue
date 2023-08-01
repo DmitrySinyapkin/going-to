@@ -34,6 +34,7 @@
     const supabase = useSupabaseAuthClient()
     const user = useSupabaseUser()
     const router = useRouter()
+    const gamesStore = useGamesStore()
 
     const onSubmit = async() => {
         const { valid } = await form.value.validate()
@@ -52,6 +53,11 @@
 
     watchEffect(async() => {
         if (user.value) {
+            const { favorites, finished } = await useGamesCollections()
+
+            gamesStore.setFavoritesList(JSON.parse(favorites!))
+            gamesStore.setFinishedList(JSON.parse(finished!))
+            
             await router.push('/')
         }
     })
