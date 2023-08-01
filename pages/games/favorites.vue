@@ -17,14 +17,17 @@
     })
 
     const gamesStore = useGamesStore()
-    const user = useSupabaseUser()
+    /* const user = useSupabaseUser()
     const client = useSupabaseClient()
-    const { data } = await useAsyncData('profiles', async () => {
-        const { data } = await client.from('profiles').select('gamesFavorites').eq('id', user.value?.id).single()
-            return data
-    })
+   
+    if (!gamesStore.favoritesList.length) {
+        const { data } = await useAsyncData('gamesFavorites', async () => {
+            const { data } = await client.from('profiles').select('gamesFavorites').eq('id', user.value?.id).single()
+                return data
+        })
 
-    if (data.value?.gamesFavorites) {
-        gamesStore.setFavoritesList(JSON.parse(data.value?.gamesFavorites))
-    }
+        if (data.value?.gamesFavorites) {
+            gamesStore.setFavoritesList(JSON.parse(data.value?.gamesFavorites))
+        }
+    } */
 </script>
