@@ -30,6 +30,7 @@
             >
                 <v-img
                     :src="screen.image"
+                    class="tw-cursor-pointer"
                     @click="onOpen(i)"
                     cover
                 />
