@@ -23,8 +23,7 @@
 
 <script setup lang="ts">
     import { VNodeRef } from 'nuxt/dist/app/compat/capi';
-    import { required, isEmail } from '@/utils/validationRules'
-
+    
     definePageMeta({
         layout: 'main',
     })

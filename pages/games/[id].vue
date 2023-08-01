@@ -45,8 +45,6 @@
 </template>
 
 <script setup lang="ts">
-    import { getGameGenres, getGamePlatforms } from '@/utils/gamesUtils';
-
     const route = useRoute()
     const gamesStore = useGamesStore()
     await gamesStore.getGameDetails(route.params.id)
