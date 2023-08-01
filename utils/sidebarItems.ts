@@ -1,15 +1,15 @@
-interface sidebarSubItems {
+interface SidebarSubItems {
     title: string,
     value: string,
     icon?: string,
     to: string,
 }
 
-interface sidebarItems extends sidebarSubItems {
-    subitems?: Array<sidebarSubItems>
+interface SidebarItems extends SidebarSubItems {
+    subitems?: Array<SidebarSubItems>
 }
 
-export const sidebarItems: Array<sidebarItems> = [
+export const sidebarItems: Array<SidebarItems> = [
     {
         title: 'Games',
         value: 'games',
