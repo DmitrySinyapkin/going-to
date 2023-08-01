@@ -14,7 +14,7 @@
         <div class="tw-container tw-mx-auto tw-p-4">
             <div class="tw-flex tw-gap-10">
                 <h2>{{ gamesStore.game?.name }}</h2>
-                <GameButtons />
+                <GamesButtons />
             </div>
             <p class="tw-text-gray-600">{{ genres }}</p>
             <p class="tw-pt-3"><span class="tw-font-bold">Platforms:</span> {{ platforms }}</p>
@@ -35,7 +35,7 @@
                 />
             </v-col>
         </v-row>
-        <CarouselComponent
+        <CommonCarousel
             :isOpen="isOpen"
             @onClose="onClose"
             :items="gamesStore.game?.screenshots!"
@@ -46,8 +46,6 @@
 
 <script setup lang="ts">
     import { getGameGenres, getGamePlatforms } from '@/utils/gamesUtils';
-    import GameButtons from '@/components/games/GameButtons.vue';
-    import CarouselComponent from '@/components/common/CarouselComponent.vue';
 
     const route = useRoute()
     const gamesStore = useGamesStore()

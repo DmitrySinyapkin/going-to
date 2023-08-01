@@ -13,20 +13,17 @@
             ></v-text-field>
         </section>
         <section class="tw-w-full tw-flex tw-flex-wrap tw-gap-4">
-            <GameCard
+            <GamesCard
                 v-for="game in gamesStore.gamesList"
                 :key="game.slug"
                 :game="game"
             />
-            <ObserverComponent @intersect="intersected" />
+            <CommonObserver @intersect="intersected" />
         </section>
     </section>
 </template>
 
 <script setup lang='ts'>
-    import GameCard from '../../components/games/GameCard.vue';
-    import ObserverComponent from '../../components/common/ObserverComponent.vue';
-
     const search = ref<string>('')
 
     const gamesStore = useGamesStore()

@@ -8,13 +8,13 @@
               <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
             </template>
 
-            <SidebarMenu />
+            <CommonSidebarMenu/>
           </v-menu>
-          <UserTopMenu />
+          <CommonUserTopMenu />
         </div>
     </v-app-bar>
     <v-navigation-drawer class="bg-gray-200 pt-20" :permanent="mdAndUp">
-        <SidebarMenu />
+        <CommonSidebarMenu />
     </v-navigation-drawer>
     <v-main class="bg-gray pt-40">
         <slot />
@@ -23,8 +23,6 @@
 </template>
 
 <script setup>
-  import SidebarMenu from '@/components/common/SidebarMenu.vue';
-  import UserTopMenu from '@/components/common/UserTopMenu.vue';
   import { useDisplay } from 'vuetify';
 
   const { mdAndUp } = useDisplay()

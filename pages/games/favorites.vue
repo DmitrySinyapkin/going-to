@@ -2,7 +2,7 @@
     <section class="tw-p-2">
         <h1 class="tw-mb-10">Going to play</h1>
         <section class="tw-w-full tw-flex tw-flex-wrap tw-gap-4">
-            <GameCard
+            <GamesCard
                 v-for="game in gamesStore.favoritesList"
                 :key="game.slug"
                 :game="game"
@@ -12,8 +12,6 @@
 </template>
 
 <script setup lang="ts">
-    import GameCard from '@/components/games/GameCard.vue';
-
     definePageMeta({
         middleware: 'auth',
     })
