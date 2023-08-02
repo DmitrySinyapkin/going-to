@@ -1,5 +1,5 @@
 <template>
-    <section v-if="isOpen" class="tw-w-full tw-h-full tw-z-10 tw-bg-gray-400/50 tw-absolute tw-top-0 tw-left-0">
+    <section v-if="isOpen" class="tw-w-full tw-h-full tw-z-10 tw-bg-black/90 tw-absolute tw-top-0 tw-left-0">
         <div class="tw-flex tw-justify-end tw-p-2">
             <v-btn
                     density="comfortable"
@@ -14,6 +14,9 @@
                     cover
                 />
             </Slide>
+            <template #addons>
+                <Navigation />
+            </template>
         </Carousel>
     </section>
 </template>
@@ -31,3 +34,13 @@
         emit('onClose')
     }
 </script>
+
+<style>   
+    .carousel__prev,
+    .carousel__next {
+        box-sizing: content-box;
+        border: 5px solid white;
+        border-radius: 50%;
+        background-color: white;
+    }
+</style>
