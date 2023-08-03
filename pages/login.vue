@@ -1,7 +1,7 @@
 <template>
     <div class="tw-pt-20 tw-mx-auto">
         <v-sheet width="300" class="mx-auto">
-            <h2 class="tw-mb-2">LogIn</h2>
+            <h2 class="tw-mb-2">Log In</h2>
             <v-form ref="form" fast-fail @submit.prevent="onSubmit">
                 <v-text-field
                     v-model="email"
@@ -12,6 +12,9 @@
                 <v-text-field
                     v-model="password"
                     label="Password"
+                    :append-inner-icon="isPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'"
+                    @click:append-inner="handlePasswordVisibility"
+                    :type="isPasswordVisible ? 'text' : 'password'"
                     :rules="[required]"
                 ></v-text-field>
 
@@ -31,10 +34,16 @@
     const form = ref<VNodeRef | null>(null)
     const email = ref<string>('')
     const password = ref<string>('')
+    const isPasswordVisible = ref<boolean>(false)
+
     const supabase = useSupabaseAuthClient()
     const user = useSupabaseUser()
     const router = useRouter()
     const gamesCollections = useGamesCollections()
+
+    const handlePasswordVisibility = () => {
+        isPasswordVisible.value = !isPasswordVisible.value
+    }
 
     const onSubmit = async() => {
         const { valid } = await form.value.validate()
