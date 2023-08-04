@@ -1,6 +1,6 @@
 <template>
     <section class="tw-p-2">
-        <h1 class="tw-mb-10">Games</h1>
+        <h1 class="tw-mb-10 max-sm:tw-text-center">Games</h1>
         <section class="tw-w-1/2 tw-mx-auto">
             <v-text-field
                 placeholder="Search"
@@ -12,7 +12,7 @@
                 clearable
             ></v-text-field>
         </section>
-        <section class="tw-w-full tw-flex tw-flex-wrap tw-gap-4">
+        <section class="tw-w-full tw-flex tw-flex-wrap tw-gap-4 max-sm:tw-justify-center">
             <GamesCard
                 v-for="game in gamesStore.gamesList"
                 :key="game.slug"
@@ -27,7 +27,9 @@
     const search = ref<string>('')
 
     const gamesStore = useGamesStore()
-    await gamesStore.getGamesList()
+    const route = useRoute()
+    
+    await gamesStore.getGamesList({ params: { ...route.query } })
     
     const intersected = async() => {
         if (gamesStore.nextPageUrl) {

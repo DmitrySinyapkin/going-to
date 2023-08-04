@@ -19,6 +19,25 @@
             <p class="tw-text-gray-600">{{ genres }}</p>
             <p class="tw-pt-3"><span class="tw-font-bold">Platforms:</span> {{ platforms }}</p>
             <p class="tw-pt-3"><span class="tw-font-bold">Released:</span> {{ gamesStore.game?.released }}</p>
+            <p class="tw-pt-3">
+                <span class="tw-font-bold">Developers: </span>
+                <span v-for="(developer, i) in gamesStore.game?.developers">
+                    <NuxtLink
+                        v-if="gamesStore.game?.developers && i === gamesStore.game?.developers.length - 1"
+                        :to="`/games?developers=${developer.id}`"
+                        class="tw-text-gray-600 tw-no-underline hover:tw-font-bold"
+                    >
+                        {{ developer.name }}
+                    </NuxtLink>
+                    <NuxtLink
+                        v-else
+                        :to="`/games?developers=${developer.id}`"
+                        class="tw-text-gray-600 tw-no-underline hover:tw-font-bold"
+                    >
+                        {{ developer.name }}, 
+                    </NuxtLink>
+                </span>
+            </p>
             <p class="tw-pt-3">{{ gamesStore.game?.description_raw }}</p>
         </div>
         <v-row class="tw-pt-4 tw-px-16">
