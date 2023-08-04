@@ -82,6 +82,7 @@ interface GameDetails {
     name_original: string
     description: string
     description_raw: string
+    developers: Developer[]
     genres: Genre[]
     metacritic?: number
     metacritic_platforms?: MetacriticPlatform[]
@@ -141,5 +142,13 @@ interface GameDetails {
     width: number
     height: number
     is_deleted: boolean
-  } 
+  }
+  
+  interface Developer {
+    games_count: number
+    id: number
+    image_background: string
+    name: string
+    slug: string
+  }
   
