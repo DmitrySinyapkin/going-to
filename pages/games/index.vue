@@ -1,7 +1,7 @@
 <template>
     <section class="tw-p-2">
         <h1 class="tw-mb-10 max-sm:tw-text-center">Games</h1>
-        <section class="tw-w-1/2 tw-mx-auto">
+        <section class="tw-w-1/2 max-md:tw-w-3/4 tw-mx-auto">
             <v-text-field
                 placeholder="Search"
                 v-model="search"
