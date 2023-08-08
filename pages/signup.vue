@@ -36,7 +36,7 @@
     const password = ref<string>('')
     const isPasswordVisible = ref<boolean>(false)
 
-    const supabase = useSupabaseAuthClient()
+    const supabase = useSupabaseClient()
     const user = useSupabaseUser()
     const router = useRouter()
     const config = useRuntimeConfig()
