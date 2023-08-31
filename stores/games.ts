@@ -20,7 +20,7 @@ export const useGamesStore = defineStore('games', {
     },
 
     actions: {
-        async getGamesList<T extends UseFetchOptions<GamesResponse>>(options?: T) {
+        async getGamesList(options?: UseFetchOptions<GamesResponse>) {
             const { data } = await useGamesFetch<GamesResponse>('/games', options)
             this.gamesList = data.value?.results
             this.nextPageUrl = data.value?.next
