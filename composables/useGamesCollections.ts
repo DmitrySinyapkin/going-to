@@ -1,6 +1,6 @@
 export function useGamesCollections() {
     const user = useSupabaseUser()
-    const client = useSupabaseClient()
+    const client = useSupabaseClient<Database>()
     const gamesStore = useGamesStore()
 
 
