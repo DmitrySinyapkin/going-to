@@ -1,6 +1,6 @@
 export function useGamesCollections() {
     const user = useSupabaseUser()
-    const client = useSupabaseClient()
+    const client = useSupabaseClient<Database>()
     const gamesStore = useGamesStore()
 
 
@@ -36,7 +36,7 @@ export function useGamesCollections() {
     const isFinished = computed(() => gamesStore.finishedList.some(item => item.id === gamesStore.game?.id))
 
     const addToFavorites = async() => {
-        const favorites = [...gamesStore.favoritesList, gamesStore.game]
+        const favorites = gamesStore.game !== undefined ? [...gamesStore.favoritesList, gamesStore.game] : [...gamesStore.favoritesList]
         const json = JSON.stringify(favorites)
         const { data, error } = await client.from('profiles').update({gamesFavorites: json}).eq('id', user.value?.id)
 
@@ -46,7 +46,7 @@ export function useGamesCollections() {
     }
 
     const addToFinished = async() => {
-        const finished = [...gamesStore.finishedList, gamesStore.game]
+        const finished = gamesStore.game !== undefined ? [...gamesStore.finishedList, gamesStore.game] : [...gamesStore.finishedList]
         const json = JSON.stringify(finished)
         const { data, error } = await client.from('profiles').update({gamesFinished: json}).eq('id', user.value?.id)
 

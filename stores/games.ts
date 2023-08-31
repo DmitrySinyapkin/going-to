@@ -1,9 +1,11 @@
+import { UseFetchOptions } from "nuxt/app"
+
 interface State {
     gamesList: Game[] | undefined
     nextPageUrl: string | undefined
     game: GameDetails | undefined
-    favoritesList: Game[] | []
-    finishedList: Game[] | []
+    favoritesList: Array<Game | GameDetails> | []
+    finishedList: Array<Game | GameDetails> | []
 }
 
 export const useGamesStore = defineStore('games', {
@@ -18,7 +20,7 @@ export const useGamesStore = defineStore('games', {
     },
 
     actions: {
-        async getGamesList(options?: any) {
+        async getGamesList(options?: UseFetchOptions<GamesResponse>) {
             const { data } = await useGamesFetch<GamesResponse>('/games', options)
             this.gamesList = data.value?.results
             this.nextPageUrl = data.value?.next
@@ -44,10 +46,10 @@ export const useGamesStore = defineStore('games', {
                 }
             }
         },
-        async setFavoritesList(data: any) {
+        async setFavoritesList(data: Array<Game | GameDetails>) {
             this.favoritesList = data
         },
-        async setFinishedList(data: any) {
+        async setFinishedList(data: Array<Game | GameDetails>) {
             this.finishedList = data
         },
     }
