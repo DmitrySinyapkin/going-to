@@ -4,8 +4,8 @@ interface State {
     gamesList: Game[] | undefined
     nextPageUrl: string | undefined
     game: GameDetails | undefined
-    favoritesList: Game[] | []
-    finishedList: Game[] | []
+    favoritesList: Array<Game | GameDetails> | []
+    finishedList: Array<Game | GameDetails> | []
 }
 
 export const useGamesStore = defineStore('games', {
@@ -46,10 +46,10 @@ export const useGamesStore = defineStore('games', {
                 }
             }
         },
-        async setFavoritesList(data: Game[]) {
+        async setFavoritesList(data: Array<Game | GameDetails>) {
             this.favoritesList = data
         },
-        async setFinishedList(data: Game[]) {
+        async setFinishedList(data: Array<Game | GameDetails>) {
             this.finishedList = data
         },
     }
