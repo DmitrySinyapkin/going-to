@@ -28,6 +28,9 @@ export default defineNuxtConfig({
       styles: true,
       autoImport: true,
       useVuetifyLabs: true, 
-    }
-  }
+    },
+  },
+  supabase: {
+    redirect: false,
+  },
 })

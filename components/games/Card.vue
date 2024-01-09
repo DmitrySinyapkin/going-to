@@ -23,7 +23,7 @@
     import { getGameGenres, getGamePlatforms } from '@/utils/gamesUtils';
 
     const { game } = defineProps<{
-        game: Game
+        game: Game | GameDetails
     }>()
 
     const genres = computed(() => getGameGenres(game.genres))
