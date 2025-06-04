@@ -1,49 +1,13 @@
 <template>
     <div v-if="user" class="tw-flex tw-gap-1">
-        <v-tooltip text="Add to favorites" location="bottom">
-            <template v-slot:activator="{ props }">
-                <v-btn
-                    v-if="!isFavorite && !isFinished"
-                    v-bind="props"
-                    size="22"
-                    icon="mdi-plus"
-                    @click="addToFavorites"
-                />
-            </template>
-        </v-tooltip>
-        <v-tooltip text="Add to finished" location="bottom">
-            <template v-slot:activator="{ props }">
-                <v-btn
-                    v-if="!isFinished"
-                    v-bind="props"
-                    size="22"
-                    icon="mdi-check"
-                    @click="addToFinished"
-                />
-            </template>
-        </v-tooltip>
-        <v-tooltip text="Remove from favorites" location="bottom">
-            <template v-slot:activator="{ props }">
-                <v-btn
-                    v-if="isFavorite"
-                    v-bind="props"
-                    size="22"
-                    icon="mdi-close"
-                    @click="removeFromFavorites"
-                />
-            </template>
-        </v-tooltip>
-        <v-tooltip text="Remove from finished" location="bottom">
-            <template v-slot:activator="{ props }">
-                <v-btn
-                    v-if="isFinished"
-                    v-bind="props"
-                    size="22"
-                    icon="mdi-close"
-                    @click="removeFromFinished"
-                />
-            </template>
-        </v-tooltip>
+        <template v-for="button in buttons" :key="button.name">
+            <CommonCardButton
+                v-if="button.visibility"
+                :tooltip="button.name"
+                :icon="button.icon"
+                @click="button.handler"
+            />
+        </template>
     </div>
 </template>
 
@@ -78,4 +42,31 @@
         await gamesStore.getGameDetails(id.toString())
         await gamesCollections.removeFromFinished()
     }
+
+    const buttons = computed(() => [
+        {
+            name: 'Add to favorites',
+            icon: 'mdi-plus',
+            handler: addToFavorites,
+            visibility: !isFavorite.value && !isFinished.value
+        },
+        {
+            name: 'Add to finished',
+            icon: 'mdi-check',
+            handler: addToFinished,
+            visibility: !isFinished.value
+        },
+        {
+            name: 'Remove from favorites',
+            icon: 'mdi-close',
+            handler: removeFromFavorites,
+            visibility: isFavorite.value
+        },
+        {
+            name: 'Remove from finished',
+            icon: 'mdi-close',
+            handler: removeFromFinished,
+            visibility: isFinished.value
+        }
+    ])
 </script>
