@@ -27,7 +27,7 @@ export const sidebarItems: Array<SidebarItems> = [
             },
         ]
     },
-   /*  {
+    {
         title: 'Movies',
         value: 'movies',
         to: '/movies',
@@ -43,5 +43,5 @@ export const sidebarItems: Array<SidebarItems> = [
                 to: '/watched',
             },
         ]
-    } */
+    }
 ]
