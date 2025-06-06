@@ -50,7 +50,7 @@
 <script setup lang="ts">
     const user = useSupabaseUser()
     const gamesStore = useGamesStore()
-    const gamesCollections = useGamesCollections()
+    const gamesCollections = useCollections()
 
     const isFavorite = computed(() => gamesStore.favoritesList.some(item => item.id === gamesStore.game?.id))
     const isFinished = computed(() => gamesStore.finishedList.some(item => item.id === gamesStore.game?.id))

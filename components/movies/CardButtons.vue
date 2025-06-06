@@ -18,26 +18,35 @@
 
     const user = useSupabaseUser()
     const moviesStore = useMoviesStore()
+    const collections = useCollections()
 
     const isFavorite = computed(() => moviesStore.favoritesList.some(item => item.kinopoiskId === id))
     const isFinished = computed(() => moviesStore.finishedList.some(item => item.kinopoiskId === id))
 
     const addToFavorites = async() => {
-        //await moviesStore.getMovieDetails(id)
-        alert('Not implemented yet')
+        await moviesStore.getMovieDetails(id)
+        const favorites = moviesStore.movie === null ? [...moviesStore.finishedList] : [...moviesStore.finishedList, moviesStore.movie]
+        collections.updateCollection('moviesFavorites', favorites)
     }
 
     const addToFinished = async() => {
-        //await moviesStore.getMovieDetails(id)
-        alert('Not implemented yet')
+        await moviesStore.getMovieDetails(id)
+        const finished = moviesStore.movie === null ? [...moviesStore.finishedList] : [...moviesStore.finishedList, moviesStore.movie]
+        await collections.updateCollection('moviesFinished', finished)
+
+        if (isFavorite) {
+            await removeFromFavorites()
+        }
     }
 
     const removeFromFavorites = async() => {
-        alert('Not implemented yet')
+        const favorites = moviesStore.favoritesList.filter(item => item.kinopoiskId !== id)
+        await collections.updateCollection('moviesFavorites', favorites)
     }
 
     const removeFromFinished = async() => {
-        alert('Not implemented yet')
+        const finished = moviesStore.finishedList.filter(item => item.kinopoiskId !== id)
+        await collections.updateCollection('moviesFinished', finished)
     }
 
     const buttons = computed(() => [

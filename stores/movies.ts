@@ -5,8 +5,8 @@ export const useMoviesStore = defineStore('movies', () => {
     const currentPage = ref<number>(1)
     const totalPages = ref<number | null>(null)
     const movie = ref<MovieDetails | null>(null)
-    const favoritesList = ref<Array<Movie | MovieDetails> | []>([])
-    const finishedList = ref<Array<Movie | MovieDetails> | []>([])
+    const favoritesList = ref<MovieDetails[]>([])
+    const finishedList = ref<MovieDetails[]>([])
 
     const getMoviesList = async (keyword: string = '', page: number = 1) => {
         try {
@@ -55,6 +55,14 @@ export const useMoviesStore = defineStore('movies', () => {
         }
     }
 
+    const setFinishedList = (data: MovieDetails[]) => {
+        moviesList.value = data
+    }
+
+    const setFavoritesList = (data: MovieDetails[]) => {
+        favoritesList.value = data
+    }
+
     return {
         moviesList,
         currentPage,
@@ -64,6 +72,8 @@ export const useMoviesStore = defineStore('movies', () => {
         finishedList,
         getMoviesList,
         getNextPage,
-        getMovieDetails
+        getMovieDetails,
+        setFinishedList,
+        setFavoritesList
     }
 })

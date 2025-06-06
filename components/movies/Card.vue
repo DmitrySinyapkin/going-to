@@ -24,5 +24,5 @@
 
     const genres = computed(() => getStringFromObjArray(movie.genres, 'genre'))
     //const contries = computed(() => getStringFromObjArray(movie.contries, 'contry'))
-    const detailsUrl = computed(() => `/films/${movie.kinopoiskId}`)
+    const detailsUrl = computed(() => `/movies/${movie.kinopoiskId}`)
 </script>

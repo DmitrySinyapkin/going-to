@@ -39,7 +39,7 @@
     const supabase = useSupabaseClient()
     const user = useSupabaseUser()
     const router = useRouter()
-    const gamesCollections = useGamesCollections()
+    const gamesCollections = useCollections()
 
     const handlePasswordVisibility = () => {
         isPasswordVisible.value = !isPasswordVisible.value

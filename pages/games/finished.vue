@@ -17,7 +17,7 @@
     })
 
     const gamesStore = useGamesStore()
-    const gamesCollections = useGamesCollections()
+    const collections = useCollections()
 
-    await gamesCollections.getFinished()
+    await collections.getCollection('gamesFinished')
 </script>

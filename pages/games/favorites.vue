@@ -17,7 +17,7 @@
     })
 
     const gamesStore = useGamesStore()
-    const gamesCollections = useGamesCollections()
+    const collections = useCollections()
 
-    await gamesCollections.getFavorites()
+    await collections.getCollection('gamesFavorites')
 </script>

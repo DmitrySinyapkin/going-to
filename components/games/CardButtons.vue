@@ -18,29 +18,35 @@
 
     const user = useSupabaseUser()
     const gamesStore = useGamesStore()
-    const gamesCollections = useGamesCollections()
+    const collections = useCollections()
 
     const isFavorite = computed(() => gamesStore.favoritesList.some(item => item.id === id))
     const isFinished = computed(() => gamesStore.finishedList.some(item => item.id === id))
 
     const addToFavorites = async() => {
         await gamesStore.getGameDetails(id.toString())
-        await gamesCollections.addToFavorites()
+        const favorites = gamesStore.game !== undefined ? [...gamesStore.favoritesList, gamesStore.game] : [...gamesStore.favoritesList]
+        await collections.updateCollection('gamesFavorites', favorites)
     }
 
     const addToFinished = async() => {
         await gamesStore.getGameDetails(id.toString())
-        await gamesCollections.addToFinished()
+        const finished = gamesStore.game !== undefined ? [...gamesStore.finishedList, gamesStore.game] : [...gamesStore.finishedList]
+        await collections.updateCollection('gamesFinished', finished)
+
+        if (isFavorite) {
+            await removeFromFavorites()
+        }
     }
 
     const removeFromFavorites = async() => {
-        await gamesStore.getGameDetails(id.toString())
-        await gamesCollections.removeFromFavorites()
+        const favorites = gamesStore.favoritesList.filter(item => item.id !== id)
+        await collections.updateCollection('gamesFavorites', favorites)
     }
 
     const removeFromFinished = async() => {
-        await gamesStore.getGameDetails(id.toString())
-        await gamesCollections.removeFromFinished()
+        const finished = gamesStore.finishedList.filter(item => item.id !== id)
+        await collections.updateCollection('gamesFinished', finished)
     }
 
     const buttons = computed(() => [
