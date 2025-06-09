@@ -7,10 +7,10 @@
 </template>
 
 <script setup lang="ts">
-  const gamesCollections = useGamesCollections()
+  const collections = useCollections()
   const user = useSupabaseUser()
   
   if (user.value) {
-    await gamesCollections.getCollections()
+    await collections.getCollections()
   }
 </script>

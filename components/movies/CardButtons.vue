@@ -17,22 +17,22 @@
     }>()
 
     const user = useSupabaseUser()
-    const gamesStore = useGamesStore()
+    const moviesStore = useMoviesStore()
     const collections = useCollections()
 
-    const isFavorite = computed(() => gamesStore.favoritesList.some(item => item.id === id))
-    const isFinished = computed(() => gamesStore.finishedList.some(item => item.id === id))
+    const isFavorite = computed(() => moviesStore.favoritesList.some(item => item.kinopoiskId === id))
+    const isFinished = computed(() => moviesStore.finishedList.some(item => item.kinopoiskId === id))
 
     const addToFavorites = async() => {
-        await gamesStore.getGameDetails(id.toString())
-        const favorites = gamesStore.game !== undefined ? [...gamesStore.favoritesList, gamesStore.game] : [...gamesStore.favoritesList]
-        collections.updateCollection('gamesFavorites', favorites)
+        await moviesStore.getMovieDetails(id)
+        const favorites = moviesStore.movie === null ? [...moviesStore.favoritesList] : [...moviesStore.favoritesList, moviesStore.movie]
+        collections.updateCollection('moviesFavorites', favorites)
     }
 
     const addToFinished = async() => {
-        await gamesStore.getGameDetails(id.toString())
-        const finished = gamesStore.game !== undefined ? [...gamesStore.finishedList, gamesStore.game] : [...gamesStore.finishedList]
-        collections.updateCollection('gamesFinished', finished)
+        await moviesStore.getMovieDetails(id)
+        const finished = moviesStore.movie === null ? [...moviesStore.finishedList] : [...moviesStore.finishedList, moviesStore.movie]
+        collections.updateCollection('moviesFinished', finished)
 
         if (isFavorite) {
             await removeFromFavorites()
@@ -40,13 +40,13 @@
     }
 
     const removeFromFavorites = async() => {
-        const favorites = gamesStore.favoritesList.filter(item => item.id !== id)
-        collections.updateCollection('gamesFavorites', favorites)
+        const favorites = moviesStore.favoritesList.filter(item => item.kinopoiskId !== id)
+        collections.updateCollection('moviesFavorites', favorites)
     }
 
     const removeFromFinished = async() => {
-        const finished = gamesStore.finishedList.filter(item => item.id !== id)
-        collections.updateCollection('gamesFinished', finished)
+        const finished = moviesStore.finishedList.filter(item => item.kinopoiskId !== id)
+        collections.updateCollection('moviesFinished', finished)
     }
 
     const buttons = computed(() => [

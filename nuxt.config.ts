@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       ragwApiKey: process.env.NUXT_RAGW_API_KEY,
+      kpApiKey: process.env.NUXT_KPUN_API_KEY,
       siteUrl: process.env.SITE_URL || 'http://localhost:3000'
     },
   },
@@ -31,6 +32,8 @@ export default defineNuxtConfig({
     },
   },
   supabase: {
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
     redirect: false,
   },
 })
