@@ -26,13 +26,13 @@
     const addToFavorites = async() => {
         await gamesStore.getGameDetails(id.toString())
         const favorites = gamesStore.game !== undefined ? [...gamesStore.favoritesList, gamesStore.game] : [...gamesStore.favoritesList]
-        await collections.updateCollection('gamesFavorites', favorites)
+        collections.updateCollection('gamesFavorites', favorites)
     }
 
     const addToFinished = async() => {
         await gamesStore.getGameDetails(id.toString())
         const finished = gamesStore.game !== undefined ? [...gamesStore.finishedList, gamesStore.game] : [...gamesStore.finishedList]
-        await collections.updateCollection('gamesFinished', finished)
+        collections.updateCollection('gamesFinished', finished)
 
         if (isFavorite) {
             await removeFromFavorites()
@@ -41,12 +41,12 @@
 
     const removeFromFavorites = async() => {
         const favorites = gamesStore.favoritesList.filter(item => item.id !== id)
-        await collections.updateCollection('gamesFavorites', favorites)
+        collections.updateCollection('gamesFavorites', favorites)
     }
 
     const removeFromFinished = async() => {
         const finished = gamesStore.finishedList.filter(item => item.id !== id)
-        await collections.updateCollection('gamesFinished', finished)
+        collections.updateCollection('gamesFinished', finished)
     }
 
     const buttons = computed(() => [

@@ -2,7 +2,7 @@ interface Movie {
     kinopoiskId: number
     nameRu: string
     nameOriginal: string
-    contries: MovieCountry[]
+    countries: MovieCountry[]
     genres: MovieGenre[]
     ratingKinopoisk: number
     ratingImdb: number

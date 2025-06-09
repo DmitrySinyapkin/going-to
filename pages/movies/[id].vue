@@ -14,11 +14,12 @@
         <div class="tw-container tw-mx-auto tw-p-4">
             <div class="tw-flex tw-gap-10">
                 <h2>{{ moviesStore.movie?.nameRu || moviesStore.movie?.nameOriginal }}</h2>
-                <GamesButtons />
+                <MoviesCardButtons :id="Number(route.params.id)" />
             </div>
-            <p class="tw-text-gray-600">{{ genres }}</p>
+            <p class="tw-text-gray-600" v-if="moviesStore.movie?.nameRu || moviesStore.movie?.nameOriginal">{{  moviesStore.movie?.nameOriginal }}</p>
+            <p class="tw-pt-3"><span class="tw-font-bold">Year:</span> {{ moviesStore.movie?.year }}</p>
             <p class="tw-pt-3"><span class="tw-font-bold">Genres:</span> {{ genres }}</p>
-            <p class="tw-pt-3"><span class="tw-font-bold">Contries:</span> {{ contries }}</p>
+            <p class="tw-pt-3" v-if="contries"><span class="tw-font-bold">Contries:</span> {{ contries }}</p>
             <p class="tw-pt-3">{{ moviesStore.movie?.description }}</p>
         </div>
 
@@ -33,5 +34,5 @@
     await moviesStore.getMovieDetails(Number(route.params.id))
 
     const genres = computed(() => moviesStore.movie?.genres ? getStringFromObjArray(moviesStore.movie.genres, 'genre') : '')
-    const contries = computed(() => moviesStore.movie?.contries ? getStringFromObjArray(moviesStore.movie.contries, 'contry') : '')
+    const contries = computed(() => moviesStore.movie?.countries ? getStringFromObjArray(moviesStore.movie.countries, 'country') : '')
 </script>

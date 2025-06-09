@@ -56,7 +56,7 @@ export const useMoviesStore = defineStore('movies', () => {
     }
 
     const setFinishedList = (data: MovieDetails[]) => {
-        moviesList.value = data
+        finishedList.value = data
     }
 
     const setFavoritesList = (data: MovieDetails[]) => {

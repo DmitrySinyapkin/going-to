@@ -25,14 +25,14 @@
 
     const addToFavorites = async() => {
         await moviesStore.getMovieDetails(id)
-        const favorites = moviesStore.movie === null ? [...moviesStore.finishedList] : [...moviesStore.finishedList, moviesStore.movie]
+        const favorites = moviesStore.movie === null ? [...moviesStore.favoritesList] : [...moviesStore.favoritesList, moviesStore.movie]
         collections.updateCollection('moviesFavorites', favorites)
     }
 
     const addToFinished = async() => {
         await moviesStore.getMovieDetails(id)
         const finished = moviesStore.movie === null ? [...moviesStore.finishedList] : [...moviesStore.finishedList, moviesStore.movie]
-        await collections.updateCollection('moviesFinished', finished)
+        collections.updateCollection('moviesFinished', finished)
 
         if (isFavorite) {
             await removeFromFavorites()
@@ -41,12 +41,12 @@
 
     const removeFromFavorites = async() => {
         const favorites = moviesStore.favoritesList.filter(item => item.kinopoiskId !== id)
-        await collections.updateCollection('moviesFavorites', favorites)
+        collections.updateCollection('moviesFavorites', favorites)
     }
 
     const removeFromFinished = async() => {
         const finished = moviesStore.finishedList.filter(item => item.kinopoiskId !== id)
-        await collections.updateCollection('moviesFinished', finished)
+        collections.updateCollection('moviesFinished', finished)
     }
 
     const buttons = computed(() => [
