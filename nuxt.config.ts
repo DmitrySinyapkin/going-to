@@ -3,8 +3,8 @@ export default defineNuxtConfig({
   //devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      ragwApiKey: process.env.NUXT_RAGW_API_KEY,
-      kpApiKey: process.env.NUXT_KPUN_API_KEY,
+      //ragwApiKey: process.env.NUXT_RAGW_API_KEY,
+      //kpApiKey: process.env.NUXT_KPUN_API_KEY,
       siteUrl: process.env.SITE_URL || 'http://localhost:3000'
     },
   },
